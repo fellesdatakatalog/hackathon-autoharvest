@@ -11,7 +11,7 @@ jobs:
     name: Build affected apps when pull request is created
     strategy:
       matrix:
-        app_name: []
+        app_name: [ example-app ]
     uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
     with:
       app_name: ${{ matrix.app_name }}
@@ -29,7 +29,7 @@ jobs:
     if: ${{ github.actor != 'dependabot[bot]'}}
     strategy:
       matrix:
-        app_name: []
+        app_name: [ example-app ]
       fail-fast: false
     uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
     with:

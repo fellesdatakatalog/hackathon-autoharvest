@@ -16,5 +16,5 @@ spec:
             - name: EXAMPLE_APP_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: common
+                  name: common-staging
                   key: NAMESPACE

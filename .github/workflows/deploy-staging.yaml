@@ -1,0 +1,41 @@
+name: Deploy to staging
+
+on:
+  pull_request:
+    types: [ready_for_review, opened, reopened, synchronize]
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build affected apps when pull request is created
+    strategy:
+      matrix: []
+    uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
+    with:
+      app_name: ${{ matrix.appname }}
+      environment: staging
+      cache_path: ./dist
+      cache_key: cache-dist-${{ github.sha }}
+      dockerfile: apps/${{ matrix.appname }}/Dockerfile
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
+
+  deploy:
+    name: Deploy affected apps to staging environment with reusable workflow
+    needs: build
+    if: ${{ github.actor != 'dependabot[bot]'}}
+    strategy:
+      matrix: []
+      fail-fast: false
+    uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
+    with:
+      app_name: ${{ matrix.appname }}
+      environment: staging
+      monorepo_app: true
+      cluster: digdir-fdk-dev
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      DIGDIR_FDK_AUTODEPLOY: ${{ secrets.DIGDIR_FDK_DEV_AUTODEPLOY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

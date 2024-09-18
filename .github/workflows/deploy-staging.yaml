@@ -10,10 +10,11 @@ jobs:
   build:
     name: Build affected apps when pull request is created
     strategy:
-      matrix: []
+      matrix:
+        app_name: []
     uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
     with:
-      app_name: ${{ matrix.appname }}
+      app_name: ${{ matrix.app_name }}
       environment: staging
       cache_path: ./dist
       cache_key: cache-dist-${{ github.sha }}
@@ -27,7 +28,8 @@ jobs:
     needs: build
     if: ${{ github.actor != 'dependabot[bot]'}}
     strategy:
-      matrix: []
+      matrix:
+        app_name: []
       fail-fast: false
     uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
     with:

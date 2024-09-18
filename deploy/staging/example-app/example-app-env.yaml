@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-app
+  labels:
+    app: example-app
+spec:
+  template:
+    spec:
+      containers:
+        - name: example-app
+          env:
+            - name: EXAMPLE_APP_ENV
+              value: "staging"
+            - name: EXAMPLE_APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: common
+                  key: NAMESPACE

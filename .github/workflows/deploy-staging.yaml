@@ -18,7 +18,7 @@ jobs:
       environment: staging
       cache_path: ./dist
       cache_key: cache-dist-${{ github.sha }}
-      dockerfile: apps/${{ matrix.appname }}/Dockerfile
+      dockerfile: apps/${{ matrix.app_name }}/Dockerfile
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
@@ -33,7 +33,7 @@ jobs:
       fail-fast: false
     uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
     with:
-      app_name: ${{ matrix.appname }}
+      app_name: ${{ matrix.app_name }}
       environment: staging
       monorepo_app: true
       cluster: digdir-fdk-dev

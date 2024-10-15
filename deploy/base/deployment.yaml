@@ -16,8 +16,6 @@ spec:
     metadata:
       labels:
         app: example-app
-      annotations:
-        prometheus.io/scrape: 'false'
     spec:
       containers:
         - name: example-app

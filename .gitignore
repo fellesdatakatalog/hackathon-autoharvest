@@ -1,3 +1,2 @@
 .idea
-deploy/hackathon/secrets.env
 *.env

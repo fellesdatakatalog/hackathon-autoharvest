@@ -5,6 +5,6 @@ resources:
   - deployment.yaml
   - service.yaml
 images:
-  - name: example-app
-    newName: eu.gcr.io/digdir-fdk-infra/example-app
+  - name: example-app #TODO: Change to your app name
+    newName: ghcr.io/fellesdatakatalog/example-app #TODO: Change to your app name
     newTag: $(GIT_COMMIT_SHA)

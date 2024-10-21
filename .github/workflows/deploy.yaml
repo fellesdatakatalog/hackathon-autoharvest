@@ -1,32 +1,39 @@
-name: Deploy
+name: Build & deploy
 
 on:
   push:
     branches:
-      - <my-branch>
+      - my-branch #TODO: Change to your branch name
 
 jobs:
   build:
-    name: Build affected apps when pull request is created
-    uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
+    name: Build
+    strategy:
+      matrix:
+        app_name: [ example-app ] #TODO: Change to your app name(s)
+    uses: fellesdatakatalog/workflows/.github/workflows/build-push.yaml@main
     with:
-      app_name: <app-name>
+      app_name: ${{ matrix.app_name }}
       environment: hackathon
       cache_path: ./dist
       cache_key: cache-dist-${{ github.sha }}
+      # dockerfile: ${{ matrix.app_name }}/Dockerfile  <--- Uncomment if you have multiple apps
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
 
   deploy:
-    name: Deploy affected apps to staging environment with reusable workflow
+    name: Deploy
     needs: build
-    uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
+    strategy:
+      matrix:
+        app_name: [ example-app ] #TODO: Change to your app name(s)
+      fail-fast: false
+    uses: fellesdatakatalog/workflows/.github/workflows/kustomize-deploy.yaml@main
     with:
-      app_name: <app-name>
+      app_name: ${{ matrix.app_name }}
       environment: hackathon
       cluster: digdir-fdk-hackathon
+      monorepo_app: false # Set to true if you have multiple apps
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      DIGDIR_FDK_AUTODEPLOY: ${{ secrets.HACKATHON_DEPLOY_SA }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      HACKATHON_DEPLOY_SA: ${{ secrets.HACKATHON_DEPLOY_SA }}

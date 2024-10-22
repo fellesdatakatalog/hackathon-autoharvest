@@ -1,7 +1,4 @@
 # hackathon-autoharvest
-
----- WIP ----
-
 Playground for automatic harvesting via .well known endpoint
 
 ## Intended workflow:
@@ -12,7 +9,7 @@ Playground for automatic harvesting via .well known endpoint
 - Push your code to the branch
 
 ## How do I deploy my code?
-[x] Fix all TODOS in the code
+- Fix all TODOS in the code
 - Push to branch
 - That's it! Your code will be deployed automatically
 
@@ -26,7 +23,7 @@ Playground for automatic harvesting via .well known endpoint
 - Describe what you need, (i.e. secret name, expected keys)
 - Someone will be in touch shortly, if necessary
 - Uncomment L16-18 in deploy/hackathon/env.yaml
-- Refer to env vars in your code as usual 
+- Refer to env vars in your code as usual
 - A secret should now be available in your app as an environment variable after deployment
 
 ## Where do I put my app?

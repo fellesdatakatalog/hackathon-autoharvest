@@ -30,4 +30,4 @@ WORKDIR $HOME
 # Copy only the built JAR from the previous stage
 COPY --from=build /app/target/app.jar app.jar
 
-CMD ["sh", "-c", "java -jar -XX:+UseZGC $JAVA_OPTS app.jar"]
+CMD ["sh", "-c", "java -jar -Xmx16m $JAVA_OPTS app.jar"]

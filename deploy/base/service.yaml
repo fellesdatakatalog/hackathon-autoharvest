@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: example-app #TODO: Change to your app name
+  name: halvor
 spec:
   selector:
-    app: example-app #TODO: Change to your app name
+    app: halvor
   ports:
     - name: http
       protocol: TCP

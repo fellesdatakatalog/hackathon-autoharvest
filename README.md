@@ -12,7 +12,7 @@ Playground for automatic harvesting via .well known endpoint
 - Push your code to the branch
 
 ## How do I deploy my code?
-- Fix all TODOS in the code
+[x] Fix all TODOS in the code
 - Push to branch
 - That's it! Your code will be deployed automatically
 

@@ -26,7 +26,7 @@ Playground for automatic harvesting via .well known endpoint
 - Describe what you need, (i.e. secret name, expected keys)
 - Someone will be in touch shortly, if necessary
 - Uncomment L16-18 in deploy/hackathon/env.yaml
-- Refer to env vars in your code as usual
+- Refer to env vars in your code as usual 
 - A secret should now be available in your app as an environment variable after deployment
 
 ## Where do I put my app?

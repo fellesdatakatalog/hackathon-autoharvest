@@ -2,10 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: example-app #TODO: Change to your app name
+  name: halvor
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: "my-ip"
-    networking.gke.io/managed-certificates: "my-cert"
+    kubernetes.io/ingress.global-static-ip-name: "ingress-static-ip"
 spec:
   rules:
     - host: ""
@@ -15,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: example-app #TODO: Change to your app name
+                name: halvor
                 port:
                   number: 8080

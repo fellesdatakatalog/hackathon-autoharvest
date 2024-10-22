@@ -1,7 +1,4 @@
 # hackathon-autoharvest
-
----- WIP ----
-
 Playground for automatic harvesting via .well known endpoint
 
 ## Intended workflow:

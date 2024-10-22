@@ -2,26 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-app
+  name: example-app #TODO: Change to your app name
   labels:
-    app: example-app
+    app: example-app #TODO: Change to your app name
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: example-app
+      app: example-app #TODO: Change to your app name
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: example-app
-      annotations:
-        prometheus.io/scrape: 'false'
+        app: example-app #TODO: Change to your app name
     spec:
       containers:
-        - name: example-app
-          image: example-app
+        - name: example-app #TODO: Change to your app name
+          image: example-app #TODO: Change to your app name
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

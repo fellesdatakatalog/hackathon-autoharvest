@@ -4,8 +4,7 @@ kind: Ingress
 metadata:
   name: example-app #TODO: Change to your app name
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: "my-ip"
-    networking.gke.io/managed-certificates: "my-cert"
+    kubernetes.io/ingress.global-static-ip-name: "ingress-static-ip"
 spec:
   rules:
     - host: ""

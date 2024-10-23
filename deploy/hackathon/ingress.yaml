@@ -4,8 +4,9 @@ kind: Ingress
 metadata:
   name: halvor
   annotations:
-    kubernetes.io/ingress.class: "gce"
+    cloud.google.com/backend-config: '{"ports": {"8080": "http-backend"}}'
 spec:
+  ingressClassName: gce
   rules:
     - host: ""
       http:

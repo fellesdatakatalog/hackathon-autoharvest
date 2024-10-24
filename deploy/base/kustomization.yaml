@@ -5,6 +5,6 @@ resources:
   - deployment.yaml
   - service.yaml
 images:
-  - name: example-app #TODO: Change to your app name
-    newName: ghcr.io/fellesdatakatalog/hackathon-autoharvest/example-app #TODO: Change to your app name
+  - name: test
+    newName: ghcr.io/fellesdatakatalog/hackathon-autoharvest/test
     newTag: $(GIT_COMMIT_SHA)

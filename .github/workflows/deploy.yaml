@@ -3,14 +3,14 @@ name: Build & deploy
 on:
   push:
     branches:
-      - my-branch #TODO: Change to your branch name
+      - test
 
 jobs:
   build:
     name: Build
     strategy:
       matrix:
-        app_name: [ example-app ] #TODO: Change to your app name(s)
+        app_name: [ test ]
     uses: fellesdatakatalog/workflows/.github/workflows/build-push.yaml@main
     with:
       app_name: ${{ matrix.app_name }}
@@ -26,7 +26,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        app_name: [ example-app ] #TODO: Change to your app name(s)
+        app_name: [ test ]
       fail-fast: false
     uses: fellesdatakatalog/workflows/.github/workflows/kustomize-deploy.yaml@main
     with:

@@ -4,7 +4,6 @@ kind: Ingress
 metadata:
   name: example-app #TODO: Change to your app name
 spec:
-  ingressClassName: gce
   rules:
     - host: ""
       http:

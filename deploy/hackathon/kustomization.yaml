@@ -8,10 +8,3 @@ resources:
 
 patchesStrategicMerge:
   - env.yaml
-
-#secretGenerator:
-#  - name: example-app-secret
-#    literals:
-#      - DB_PASSWORD=$(DB_PASSWORD)
-#      - API_KEY=$(API_KEY)
-#    type: Opaque

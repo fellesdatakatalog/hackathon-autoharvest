@@ -32,7 +32,7 @@
                     <fieldName>exceptionStackTrace</fieldName> <!-- More readable field name for stack traces -->
                 </stackTrace>
                 <pattern>
-                    <pattern>{ "serviceContext": { "service": "accessrequestapi" } }</pattern>
+                    <pattern>{ "serviceContext": { "service": "hackathontest" } }</pattern>
                 </pattern>
             </providers>
         </encoder>

@@ -10,14 +10,14 @@ jobs:
     name: Build
     strategy:
       matrix:
-        app_name: [ test ]
+        app_name: [ test, test2, test3, test4 ]
     uses: fellesdatakatalog/workflows/.github/workflows/build-push.yaml@main
     with:
       app_name: ${{ matrix.app_name }}
       environment: hackathon
       cache_path: ./dist
       cache_key: cache-dist-${{ github.sha }}
-      # dockerfile: ${{ matrix.app_name }}/Dockerfile  <--- Uncomment if you have multiple apps
+      dockerfile: ${{ matrix.app_name }}/Dockerfile
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -26,14 +26,14 @@ jobs:
     needs: build
     strategy:
       matrix:
-        app_name: [ test ]
+        app_name: [ test, test2, test3, test4 ]
       fail-fast: false
     uses: fellesdatakatalog/workflows/.github/workflows/kustomize-deploy.yaml@main
     with:
       app_name: ${{ matrix.app_name }}
       environment: hackathon
       cluster: digdir-fdk-hackathon
-      monorepo_app: false # Set to true if you have multiple apps
+      monorepo_app: true
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       HACKATHON_DEPLOY_SA: ${{ secrets.HACKATHON_DEPLOY_SA }}

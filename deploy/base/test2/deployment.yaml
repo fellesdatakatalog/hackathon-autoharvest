@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test2
+  labels:
+    app: test2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: test2
+    spec:
+      containers:
+        - name: test2
+          image: test2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ping
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 1
+            initialDelaySeconds: 20
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ready
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 1
+            initialDelaySeconds: 20
+          resources:
+            requests:
+              cpu: 10m
+              memory: 1Gi
+            limits:
+              memory: 1Gi

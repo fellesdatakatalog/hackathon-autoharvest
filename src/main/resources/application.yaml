@@ -22,7 +22,7 @@ spring:
   config.activate.on-profile: dev
 
 logging:
-  level.no.digdir.accessrequestapi: DEBUG
+  level.no.digdir.hackathontest: DEBUG
 
 ---
 spring:
